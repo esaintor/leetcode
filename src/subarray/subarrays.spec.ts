@@ -1,4 +1,4 @@
-import { checkSubarraySum, subarraysDivByK } from "./subarrays";
+import { checkSubarraySum, subarraysDivByK } from './subarrays'
 
 describe('run all', () => {
   describe('check subarray sum', () => {
@@ -47,6 +47,11 @@ describe('run all', () => {
     it('[5], 9', () => {
       const result = subarraysDivByK([5], 9)
       expect(result).toBe(0)
+    })
+
+    it('[1, -1, 0], 0', () => {
+      const result = subarraysDivByK([1, -1, 0], 0)
+      expect(result).toBe(3)
     })
   })
 })

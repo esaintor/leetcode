@@ -36,14 +36,14 @@ function checkSubarraySum(nums: number[], k: number): boolean {
 function subarraySum(nums: number[], k: number): number {
   let sum = 0
   let count = 0
-  const map = { 0 : 1}
+  const map = new Map().set(0, 1)
   for (const num of nums) {
     sum += num
     const rem = sum - k
-    if (map[rem]) {
-      count += map[rem]
+    if (map.has(rem)) {
+      count += map.get(rem)
     }
-    map[sum] = (map[sum] || 0) + 1
+    map.set(sum, (map.get(sum) || 0) + 1)
   }
   return count
 }
@@ -53,16 +53,16 @@ function subarraySum(nums: number[], k: number): number {
 function subarraysDivByK(nums: number[], k: number): number {
   let count = 0
   let sum = 0
-  const rem = { 0: 1 }
+  const rem = new Map().set(0, 1)
   for (const num of nums) {
     sum += num
     let r = sum % k
     if (r < 0) r = k + r
-    if (r in rem) {
-      count += rem[r]
-      rem[r]++
+    if (rem.has(r)) {
+      count += rem.get(r)
+      rem.set(r, rem.get(r) + 1)
     } else {
-      rem[r] = 1
+      rem.set(r, 1)
     }
   }
   return count
