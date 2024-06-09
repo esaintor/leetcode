@@ -1,21 +1,31 @@
 // 523. Continuous Subarray Sum
-// Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
+// Given an integer array nums and an integer k,return
+// true if nums has a good subarray or false otherwise.
 // A good subarray is a subarray where:
 // - its length is at least two, and
 // - the sum of the elements of the subarray is a multiple of k.
+// function checkSubarraySum(nums: number[], k: number): boolean {
+//   let sum = 0
+//   let prev = 0
+//   const remainder = new Set()
+//   for (const num of nums) {
+//     sum += num
+//     if (k != 0) sum %= k
+//     if (remainder.has(sum)) return true
+//     remainder.add(prev)
+//     prev = sum
+//   }
+//   return false
+// }
+
 function checkSubarraySum(nums: number[], k: number): boolean {
-  const len = nums.length
   let sum = 0
-  let prefix = 0
-  const remainder = new Set()
-  for (let i = 0; i < len; i++) {
-    console.log('prev:', sum)
+  const mem = new Map().set(0, -1)
+  for (let i = 0; i < nums.length; i++) {
     sum += nums[i]
-    if (k != 0) sum %= k
-    console.log('num:', nums[i], '\nsum:', sum, '\nprefix:', prefix, '\nremainder:', remainder)
-    if (remainder.has(sum)) return true
-    remainder.add(prefix)
-    prefix = sum
+    const s = sum % k
+    if (!mem.has(s)) mem.set(s, i)
+    else if (i - mem.get(s) > 1) return true
   }
   return false
 }

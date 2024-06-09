@@ -16,6 +16,14 @@ describe('run all', () => {
       const result = checkSubarraySum([0, 0], 1)
       expect(result).toBeTruthy()
     })
+    it('[23, 2, 4, 6, 6], 7', () => {
+      const result = checkSubarraySum([23, 2, 4, 6, 6], 7)
+      expect(result).toBeTruthy()
+    })
+    it('[5, 0, 0, 0, 0], 3', () => {
+      const result = checkSubarraySum([5, 0, 0, 0, 0], 3)
+      expect(result).toBeTruthy()
+    })
   })
 
   describe('subarray sum', () => {
