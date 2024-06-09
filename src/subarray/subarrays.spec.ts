@@ -1,4 +1,4 @@
-import { checkSubarraySum } from './subarrays'
+import { checkSubarraySum, subarraysDivByK } from "./subarrays";
 
 describe('run all', () => {
   describe('check subarray sum', () => {
@@ -27,6 +27,18 @@ describe('run all', () => {
     it('[1,2,3], 3', () => {
       const result = checkSubarraySum([1, 2, 3], 3)
       expect(result).toBeTruthy()
+    })
+  })
+
+  describe('subarray sum count', () => {
+    it('[4, 5, 0, -2, -3, 1], 5', () => {
+      const result = subarraysDivByK([4, 5, 0, -2, -3, 1], 5)
+      expect(result).toBe(7)
+    })
+
+    it('[5], 9', () => {
+      const result = subarraysDivByK([5], 9)
+      expect(result).toBe(0)
     })
   })
 })

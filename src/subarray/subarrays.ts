@@ -38,4 +38,24 @@ function subarraySum(nums: number[], k: number): number {
   return count
 }
 
-export { checkSubarraySum, subarraySum }
+// 974. Subarray Sums Divisible by K
+// Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+function subarraysDivByK(nums: number[], k: number): number {
+  let count = 0
+  let sum = 0
+  const rem = { 0: 1 }
+  for (const num of nums) {
+    sum += num
+    let r = sum % k
+    if (r < 0) r = k + r
+    if (r in rem) {
+      count += rem[r]
+      rem[r]++
+    } else {
+      rem[r] = 1
+    }
+  }
+  return count
+}
+
+export { checkSubarraySum, subarraySum, subarraysDivByK }
